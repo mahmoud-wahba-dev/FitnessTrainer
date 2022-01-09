@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+  {% block content %}
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/abot-bread.jpeg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+<!--                        <h2>About us</h2>-->
+                        <div class="bt-option">
+<!--                            <span>{% trans 'Make You Best' %}</span>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+        <!-- About US Section Begin -->
+        <section class="contact-section  new-bg-color ">
+            <div class="container-fluid">
+                <div class="row">
+<!--                    <div class="col-lg-6 p-0">-->
+<!--                        <div class="about-video set-bg" data-setbg="{{ setting.about_us_img.url }}">-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+                    <div class="col-lg-12 p-0">
+                        <div id="new-about-text" class="about-text pg-ground">
+                            <div class="section-title">
+<!--                                <span>About Us</span>-->
+                            </div>
+                            <div class="at-desc">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if  LANGUAGE_CODE == 'ar'%}
+                                <p>{{ setting.about_us_ar }}</p>
+                                {% else %}
+                                <p>{{ setting.about_us }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- About US Section End -->
+
+
+{% endblock %}

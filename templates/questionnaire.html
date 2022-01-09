@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+  {% block content %}
+
+   <!-- Team Section Begin -->
+    <section class="team-section spad">
+
+        <div class="container">
+            <div class="row my-flex">
+                <div class="col-lg-12">
+                         <div class="section-title">
+                            <span>{% trans 'Please answer the following questions:' %}</span>
+                        </div>
+                    <div class="team-title">
+                        <form id="toggle-form" action="#" method="post">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Do you have any chronic diseases ?' %}</legend>
+                                    </div>
+                                    <div class="row">
+                                          <div class="col-sm-6">
+                                            <div class="form-check">
+                                          <input class="form-check-input chronic" type="radio" name="chronic_diseases" id="chronic1"  value="yes">
+                                          <label class="form-check-label" for="chronic1">
+                                            {% trans 'Yes' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-6">
+                                            <div class="form-check">
+                                          <input class="form-check-input chronic" type="radio" name="chronic_diseases" id="chronic2"  value="no">
+                                          <label class="form-check-label" for="chronic2">
+                                            {% trans 'No' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                      </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-8">
+                                        <textarea style="display: none;" class="form-control" name="chronic_diseases_area" placeholder="{% trans 'Please specify' %}" id="chronicarea" rows="3"></textarea>
+
+                                    </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Does the chronic disease prevent you from performing some daily tasks or exercises ?' %}</legend>
+                                    </div>
+
+                                        <div class="row">
+                                          <div class="col-sm-6">
+                                            <div class="form-check">
+                                          <input class="form-check-input chronicPrevent" type="radio" name="chronic_prevent" id="chronicPrevent1" value="yes" >
+                                          <label class="form-check-label" for="chronicPrevent1">
+                                            {% trans 'Yes' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-6">
+                                            <div class="form-check">
+                                          <input class="form-check-input chronicPrevent" type="radio" name="chronic_prevent" id="chronicPrevent2" value="no">
+                                          <label class="form-check-label" for="chronicPrevent2">
+                                            {% trans 'No' %}
+                                          </label>
+                                        </div>
+                                          </div>
+
+                                      </div>
+                                        <div class="row justify-content-center">
+                                       <div class="col-sm-8">
+                                        <textarea style="display: none;" class="form-control" name="chronic_prevent_area" placeholder="{% trans 'Please specify' %}" id="chronicPreventArea" rows="3"></textarea>
+
+                                    </div>
+                                        </div>
+                                </fieldset>
+
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Do you have any chronic injuries ?' %}</legend>
+                                    </div>
+
+                                      <div class="row"> 
+                                          <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input chronicInjuries" type="radio" name="chronic_injuries" id="chronicInjuries1" value="yes">
+                                          <label class="form-check-label" for="chronicInjuries1">
+                                            {% trans 'Yes' %}
+                                          </label>
+                                        </div>
+                                              </div>
+                                           <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input chronicInjuries" type="radio" name="chronic_injuries" id="chronicInjuries2" value="no">
+                                          <label class="form-check-label" for="chronicInjuries2">
+                                            {% trans 'No' %}
+                                          </label>
+                                        </div>
+                                           </div>
+
+                                      </div>
+                                    <div class="row justify-content-center">
+                                       <div class="col-sm-8">
+                                        <textarea style="display: none;" class="form-control" placeholder="{% trans 'Please specify' %}" name="chronic_injuries_area" id="chronicInjuriesArea" rows="3"></textarea>
+                                    </div>
+                                    </div>
+                                </fieldset>
+
+
+
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Does the injury still prevent you from performing some daily tasks or exercises ?' %}</legend>
+                                    </div>
+
+                                        <div class="row"> 
+                                          <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input injuryPerforming" type="radio" name="injury_performing" id="injuryPerforming1" value="yes" >
+                                          <label class="form-check-label" for="injuryPerforming1">
+                                            {% trans 'Yes' %}
+                                          </label>
+                                        </div>
+                                              </div>
+                                          <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input injuryPerforming" type="radio" name="injury_performing" id="injuryPerforming2" value="no">
+                                          <label class="form-check-label" for="injuryPerforming2">
+                                            {% trans 'No' %}
+                                          </label>
+                                        </div>
+                                          </div>
+
+                                      </div>
+
+                                      <div class="row justify-content-center">
+                                          <div class="col-sm-8">
+                                        <textarea style="display: none;" class="form-control" name="injury_performing_area" placeholder="{% trans 'Please specify' %}" id="injuryPerformingArea" rows="3"></textarea>
+                                      </div>     
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Do you have an allergy to a particular type of food ?' %}</legend>
+                                    </div>
+
+                                      <div class="row">
+                                          <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input particularFood" type="radio" name="particular_food" id="particularFood1" value="yes" >
+                                          <label class="form-check-label" for="particularFood1">
+                                            {% trans 'Yes' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                              <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input particularFood" type="radio" name="particular_food" id="particularFood2" value="no">
+                                          <label class="form-check-label" for="particularFood2">
+                                            {% trans 'No' %}
+                                          </label>
+                                        </div>
+                                              </div>
+                                      </div>
+
+                                      <div class="row justify-content-center">
+                                           <div class="col-sm-8">
+                                        <textarea style="display: none;" class="form-control" placeholder="{% trans 'Please specify' %}" name="particular_food_area" id="particularFoodArea" rows="3"></textarea>
+                                           </div>
+                                       </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Do you use supplements ?' %}</legend>
+                                    </div>
+                                         <div class="row">
+                                          <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input supplements" type="radio" name="supplements" id="supplements1" value="yes" >
+                                          <label class="form-check-label" for="supplements1">
+                                            {% trans 'Yes' %}
+                                          </label>
+                                        </div>
+                                              </div>
+                                          <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input supplements" type="radio" name="supplements" id="supplements2" value="no">
+                                          <label class="form-check-label" for="supplements2">
+                                            {% trans 'No' %}
+                                          </label>
+                                        </div>
+                                          </div>
+
+                                      </div>
+                                      <div class="row justify-content-center">
+                                          <div class="col-sm-8">
+                                        <textarea style="display: none;" class="form-control" placeholder="{% trans 'Please specify' %}" name="supplements_area" id="supplementsArea" rows="3"></textarea>
+
+                                    </div>
+                                  </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Are you willing to use supplements to reach your goal faster ?' %}</legend>
+                                    </div>
+                                    <div class="row">
+                                          <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input supplementsFaster" type="radio" name="supplements_faster" id="supplementsFaster1" value="yes" >
+                                          <label class="form-check-label" for="supplementsFaster1">
+                                            {% trans 'Yes' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                              <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input supplementsFaster" type="radio" name="supplements_faster" id="supplementsFaster2" value="no">
+                                          <label class="form-check-label" for="supplementsFaster2">
+                                            {% trans 'No' %}
+                                          </label>
+                                        </div>
+                                              </div>
+                                      </div>
+
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'What is your daily activity level ?' %}</legend>
+                                                                            </div>
+
+                                      <div class="row">
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="daily_Activity" id="dailyActivity1" value="week" >
+                                          <label class="form-check-label" for="dailyActivity1">
+                                            {% trans 'Weak: office work or very little movement with no sports activity' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="daily_Activity" id="dailyActivity2" value="moderate">
+                                          <label class="form-check-label" for="dailyActivity2">
+                                            {% trans 'Moderate: Standing or walking most of the time with/or a light sports activity once to three times a week' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="daily_Activity" id="dailyActivity3" value="high">
+                                            <label class="form-check-label" for="dailyActivity3">
+                                                {% trans 'High:High physical activity most of the day with/or heavy sports activity five to seven times a week' %}
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'How often do you go to the gym (per week) ?' %}</legend>
+                                                                            </div>
+
+                                      <div class="row">
+                                          <div class="col-sm-4">
+                                                <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="go_gym" id="goGym1" value="3" >
+                                          <label class="form-check-label" for="goGym1">
+                                            {% trans '3 days' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                                <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="go_gym" id="goGym2" value="4">
+                                          <label class="form-check-label" for="goGym2">
+                                            {% trans '4 days' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="go_gym" id="goGym3" value="5">
+                                            <label class="form-check-label" for="goGym3">
+                                                {% trans '5 days' %}
+                                            </label>
+                                          </div>
+                                            </div>
+                                      </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'Where will you train ?' %}</legend>
+                                                                            </div>
+
+                                      <div class="row">
+                                           <div class="col-sm-6">
+                                               <div class="form-check">
+                                          <input class="form-check-input trainWhere" type="radio" name="train_where" id="trainWhere1" value="gym">
+                                          <label class="form-check-label" for="trainWhere1">
+                                            {% trans 'Gym' %}
+                                          </label>
+                                        </div>
+                                           </div>
+                                           <div class="col-sm-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input trainWhere" type="radio" name="train_where" id="trainWhere2" value="home">
+                                          <label class="form-check-label" for="trainWhere2">
+                                            {% trans 'home' %}
+                                          </label>
+                                        </div>
+                                           </div>
+                                      </div>
+                                </fieldset>
+                                <fieldset style="display: none;" id="equipment" class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'What equipment do you have to train with at home ?' %}</legend>
+                                    </div>
+
+                                        <div class="row justify-content-center">
+                                              <div class="col-sm-8">
+                                                    <div class="form-group">
+                                                    <textarea class="form-control" placeholder="{% trans 'Please specify' %}" name="equip_area"  id="equipmentArea" rows="3"></textarea>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'When will you train ?' %}</legend>
+                                    </div>
+
+                                      <div class="row">
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="When_train" id="WhenTrain1" value="early morning" >
+                                          <label class="form-check-label" for="WhenTrain1">
+                                            {% trans 'early morning' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="When_train" id="WhenTrain2" value="mid-day">
+                                          <label class="form-check-label" for="WhenTrain2">
+                                            {% trans 'mid-day' %}
+                                          </label>
+                                        </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="When_train" id="WhenTrain3" value="late night">
+                                          <label class="form-check-label" for="WhenTrain3">
+                                            {% trans 'late night' %}
+                                          </label>
+                                        </div>
+                                          </div>
+
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'What is your current nutrition plan ?' %}</legend>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                      <div class="col-sm-8">
+                                            <div class="form-group">
+                                            <textarea class="form-control" placeholder="{% trans 'Please specify' %}" name="nutrition_area" id="nutritionArea" rows="3"></textarea>
+                                          </div>
+                                      </div>
+                                    </div>
+
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'What is your current workout plan ?' %}</legend>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                      <div class="col-sm-8">
+                                            <div class="form-group">
+                                            <textarea class="form-control" placeholder="{% trans 'Please specify' %}" name="workout_area" id="workoutArea" rows="3"></textarea>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'What is your main goal of online training ?' %}</legend>
+                                    </div>
+                                <div class="row  justify-content-center">
+                                      <div class="col-sm-8">
+                                            <div class="form-group">
+                                            <textarea class="form-control" placeholder="{% trans 'Please specify' %}" id="onlineTrainingArea" rows="3"></textarea>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row  justify-content-center">
+                                        <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" placeholder="{% trans 'Enter Full Name' %}">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+          <div class="row">
+          <div class="col-sm-8">
+              <button type="button" class="primary-btn btn-normal appoinment-btn send-button">{% trans 'SHOW TERMS & CONDITIONS' %}</button>
+          </div>
+          </div>
+            <div class="row">
+                <div class="col-lg-12 terms-section" style="display:none">
+                    <div class="questionaire">
+                        <div class="section-title">
+                            <h2>{% trans 'Terms And Conditions' %}</h2>
+                            <span>{% trans 'Dear client, please take a moment to go through terms and conditions before signing up.' %}</span>
+                        </div>
+                        <div class="at-desc-quest">
+                        <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'The full amount must be paid before the start of the subscription.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'No refund after passing 24 hour period of payment.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Subscription starts after sending first month programs or after five days of paying the subscription amount.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Subscription ends with the end of the chosen package.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Subscription can’t be postponed during follow up period.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Client’s transformation photos (before & after) can be used by coach Hawary website and social media platforms with the possibility of hiding the client’s identity.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Programs are sent within five days of fulfilling all the required information' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Only one workout program is sent during a 4 week period with the possibility of adjusting by Coach Hawary.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Messages are being responded weekly by email.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'phone calls and voice messages are not allowed.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'All messages must be written in Arabic or English languages only.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'WhatsApp number is Coach Hawary’s customers service number, it will help you deliver your notes.' %}</span><br>
+                         <span class="fa fa-flag"></span>&nbsp;<span>{% trans 'Customer service are not to answer technical matters' %}</span><br><br><br>
+                            <div class="section-title pl-5">
+                            <input type="checkbox" class="form-check-input agreeTerms" id="agreeTerms">
+                            <span class="form-check-label" >{% trans 'Agree Condition And Terms' %}</span><br><br>
+                                <button style="display:none" type="button" class="primary-btn btn-normal appoinment-btn submit-btn">{% trans 'submit & send' %}</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+ {% load static %}
+{% load i18n %}
+
+  <!-- Testimonial Section Begin -->
+  <section class="testimonial-section spad">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="section-title">
+                      <span>{% trans 'Clients Transformation' %}</span>
+                  </div>
+              </div>
+          </div>
+          <div class="ts_slider owl-carousel">
+              {% for client_opinion in opinion %}
+              <div class="ts_item">
+                  <div class="row">
+                      <div class="col-lg-12 text-center">
+                          <div class="ti_pic">
+                              <img src="{{ client_opinion.img.url }}" alt="">
+                          </div>
+                          <div class="ti_text">
+                              {% get_current_language as LANGUAGE_CODE %}
+                              {% if  LANGUAGE_CODE == 'ar'%}
+                                <p style="max-width:50% tex-align:center">{{ client_opinion.name_ar }}</p>
+                              <ul>
+                                {% for details in client_opinion.trans_details.all %}
+                                <li><P>{{ details.description_ar }}</P></li>
+                                {% endfor %}
+                            </ul>
+                              {% else %}
+                              <p style="max-width:50% tex-align:center">{{ client_opinion.name }}</p>
+                              <ul>
+                                {% for details in client_opinion.trans_details.all %}
+                                <li><P>{{ details.description }}</P></li>
+                                {% endfor %}
+                            </ul>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+  </section>
+  <!-- Testimonial Section End -->

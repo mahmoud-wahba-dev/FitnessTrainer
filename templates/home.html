@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+  {% block content %}
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hs-slider owl-carousel">
+            {% for slider_img in setting.slider.all %}
+            <div class="hs-item set-bg" data-setbg="{{ slider_img.img.url }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 offset-lg-9">
+                            <div class="hi-text">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if  LANGUAGE_CODE == 'ar'%}
+                                <span>{{ slider_img.title_ar }}</span>
+                                <h1>{{ slider_img.description_ar }}</h1>
+                                {% else %}
+                                <span>{{ slider_img.title }}</span>
+                                <h1>{{ slider_img.description }}</h1>
+                                {% endif %}
+                                <!-- <a href="https://api.whatsapp.com/send?phone=201066243716" target="_blank" class="primary-btn">Join Us</a> -->
+                                <a href="#" class="primary-btn pricing-btn">{% trans 'Subscribe now' %}</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- ChoseUs Section Begin -->
+    <section class="choseus-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>{% trans 'Why choose online coaching with Hawary?' %}</span>
+<!--                        <h2>PUSH YOUR LIMITS FORWARD</h2>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+<!--                        <span class="flaticon-034-stationary-bike"></span>-->
+                        <h4>{% trans 'Affordability' %}</h4>
+                        <p>{% trans 'Online coaching with Hawary is considered a great option to get all the support you need if you aren’t quite in a position to hire a personal trainer. For instance, You will most likely get 16 weeks of online coaching with Hawary for the price of only 12 sessions/4 weeks with a personal trainer.' %}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+<!--                        <span class="flaticon-033-juice"></span>-->
+                        <h4>{% trans 'Service' %}</h4>
+                        <p id="service-text" >{% trans "Coach Hawary has put a lot of time and effort to give his clients the best online coaching service and care. All programs are customized for you and your goal. Workout plans made to suit your level and goal All exercises are demonstrated in videos to make sure you are doing allot them  with  the right performance Sets, reps, tempo, and resting time are clarified in all exercises" %} <button id="show-btn">show more</button> </p>
+                        <p id="more-p-hide"> {% trans "besides the coach’s notes on each workout Nutrition plans are so flexible and easy to follow, that’s because you have various food options to choose from, in other words, you will make your menu Your nutrition plan is 100% customized for you to suit your goal, lifestyle, and food preference. It includes your daily calorie intake, macronutrients, supplement guideline, and more of the essential elements to help you reach your goal." %}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+<!--                        <span class="flaticon-002-dumbell"></span>-->
+                        <h4>{% trans 'Follow-up' %}</h4>
+                        <p>{% trans "Reaching your goal consists of many important factors but follow-up is our priority, Coach Hawary’s clients' service is available to help you answer your daily questions, in addition to checking your status, changing or adjusting any of your programs, or fulfilling your requirements in a regular basis." %}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+<!--                        <span class="flaticon-014-heart-beat"></span>-->
+                        <h4>{% trans 'Results' %}</h4>
+                        <p>{% trans "Coach Hawary's favorite saying is Trust the process Since 2015 he has worked with over 6000+ clients as their personal trainer or an online coach. Results are guaranteed with coach Hawary as he works with each client’s case as if it’s the only one he has and the results are always Phenomenal, not only great body transformations but also changing whole lifestyles." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ChoseUs Section End -->
+
+    <!-- Banner Section Begin -->
+    <section class="banner-section set-bg" data-setbg="{% static 'img/banner-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="bs-text service-banner">
+                        <h2>{% trans 'Exercise until the body obeys.' %}</h2>
+                        <div class="bt-tips">{% trans 'Where health, beauty and fitness meet.' %}</div>
+                        <a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="play-btn video-popup"><i
+                                class="fa fa-caret-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
+
+    <!-- Team Section Begin -->
+     <section class="team-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>{% trans 'Packages' %}</span>
+                        <h2>{% trans 'Choose your plan' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row team">
+                <div class="ts-slider owl-carousel">
+                    {% for group in packages_group %}
+                    <div class="col-lg-4">
+                        <div class="ts-item set-bg center-mid-pic" data-setbg="{{ group.img.url }}">
+                            <div class="ts_text">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% if  LANGUAGE_CODE == 'ar'%}
+                                <h4>{{ group.name_ar }}</h4>
+                                <span>{{ group.description_ar }}</span>
+                                {% else %}
+                                <h4>{{ group.name }}</h4>
+                                <span>{{ group.description }}</span>
+                                {% endif %}
+                                <a href="{% url 'packages'  %}" class="primary-btn pricing-btn">{% trans 'Enroll now' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section End -->
+    {% include "includes/clients-opinion.html" %}
+
+{% endblock %}

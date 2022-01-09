@@ -1,0 +1,669 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+  {% block content %}
+
+   <!-- Team Section Begin -->
+    <section class="team-section spad">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                         <div class="section-title">
+                             <h2>{% trans 'Shopping Cart' %}</h2>
+                            <span>{% trans 'these are options of food that will facilitate your diet plan, fell free to choose your favorite ones' %}</span>
+                        </div>
+                    <div class="team-title">
+                        <form action="{% url 'food'  %}" method="post" enctype='multipart/form-data'>
+                           {% csrf_token %}
+                            {% for package in food_packages %}
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% if  LANGUAGE_CODE == 'ar'%}
+                                        <legend class="col-form-label col-sm-12 pt-0 legend-class">{{ package.name_ar }}</legend>
+
+                                        {% else %}
+                                      <legend class="col-form-label col-sm-12 pt-0 legend-class">{{ package.name }}</legend>
+                                        {% endif %}
+                                    </div>
+                                    {% for row in package.Food_packages.all %}
+                                      <div class="row">
+                                          {% for food in row.food_raw.all %}
+                                          <div class="col-sm-3">
+                                                <div class="form-check form-check-inline">
+                                                    {% if  LANGUAGE_CODE == 'ar'%}
+                                                    <input class="form-check-input" type="checkbox" id="{{ food.name }}" name="{{ package.name }}" value="{{ food.name }}">
+                                                  <label class="form-check-label" for="{{ food.name }}">{{ food.name_ar }}</label>
+                                                    {% else %}
+                                                    <input class="form-check-input" type="checkbox" id="{{ food.name }}" name="{{ package.name }}" value="{{ food.name }}">
+                                                  <label class="form-check-label" for="{{ food.name }}">{{ food.name }}</label>
+                                                    {% endif %}
+
+
+                                                </div>
+                                          </div>
+                                          {% endfor %}
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="bread" name="carbohydrate" value="Brown toast or bread">-->
+<!--                                                    <label class="form-check-label" for="bread">{% trans 'Brown toast or bread' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="wheat" name="carbohydrate" value="Whole wheat toast or bread">-->
+<!--                                                    <label class="form-check-label" for="wheat">{% trans 'Whole wheat toast or bread' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="grain" name="carbohydrate" value="Whole grain toast or bread">-->
+<!--                                                    <label class="form-check-label" for="grain">{% trans 'Whole grain toast or bread' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+                                      </div>
+                                    {% endfor %}
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="pasta" name="carbohydrate" value="100% whole wheat pasta">-->
+<!--                                                  <label class="form-check-label" for="pasta">{% trans '100% whole wheat pasta' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="oat" name="carbohydrate" value="oat pasta">-->
+<!--                                                    <label class="form-check-label" for="oat">{% trans 'oat pasta' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="potatoes" name="carbohydrate" value="Sweet potatoes">-->
+<!--                                                    <label class="form-check-label" for="potatoes">{% trans 'Sweet potatoes' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="white" name="carbohydrate" value="white potatoes">-->
+<!--                                                    <label class="form-check-label" for="white">{% trans 'white potatoes' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="brown_rice" name="carbohydrate" value="brown rice">-->
+<!--                                                  <label class="form-check-label" for="brown_rice">{% trans 'brown rice' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="basmati_rice" name="carbohydrate" value="basmati rice">-->
+<!--                                                    <label class="form-check-label" for="basmati_rice">{% trans 'basmati rice' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Quinoa" name="carbohydrate" value="Quinoa">-->
+<!--                                                    <label class="form-check-label" for="Quinoa">{% trans 'Quinoa' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="oats_" name="carbohydrate" value="oats">-->
+<!--                                                    <label class="form-check-label" for="oats_">{% trans 'oats' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="zero_sugar" name="carbohydrate" value="Rice cakes zero sugar">-->
+<!--                                                  <label class="form-check-label" for="zero_sugar">{% trans 'Rice cakes zero sugar' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="honey_" name="carbohydrate" value="honey">-->
+<!--                                                    <label class="form-check-label" for="honey_">{% trans 'honey' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+                                </fieldset>
+                            {% endfor %}
+<!--                                <fieldset class="form-group">-->
+<!--                                    <div class="row">-->
+<!--                                      <legend class="col-form-label col-sm-12 pt-0 legend-class">{% trans 'Protein options:' %}</legend>-->
+<!--                                    </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Low_fat_beef" name="protein" value="Low fat beef">-->
+<!--                                                  <label class="form-check-label" for="Low_fat_beef">{% trans 'Low fat beef' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Low_fat_ground_beef" name="protein" value="Low fat ground beef">-->
+<!--                                                    <label class="form-check-label" for="Low_fat_ground_beef">{% trans 'Low fat ground beef' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Beef_liver" name="protein" value="Beef liver">-->
+<!--                                                    <label class="form-check-label" for="Beef_liver">{% trans 'Beef liver' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Beef_kidney" name="protein" value="Beef kidney">-->
+<!--                                                    <label class="form-check-label" for="Beef_kidney">{% trans 'Beef kidney' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Camel_liver" name="protein" value="Camel liver">-->
+<!--                                                  <label class="form-check-label" for="Camel_liver">{% trans 'Camel liver' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Rabbit_meat" name="protein" value="Rabbit meat">-->
+<!--                                                    <label class="form-check-label" for="Rabbit_meat">{% trans 'Rabbit meat' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Chicken_breasts" name="protein" value="Chicken breasts">-->
+<!--                                                    <label class="form-check-label" for="Chicken_breasts">{% trans 'Chicken breasts' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Chicken_liver" name="protein" value="Chicken liver">-->
+<!--                                                    <label class="form-check-label" for="Chicken_liver">{% trans 'Chicken liver' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Turkey_breast" name="protein" value="Turkey breast">-->
+<!--                                                  <label class="form-check-label" for="Turkey_breast">{% trans 'Turkey breast' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Salmon_fish" name="protein" value="Salmon fish">-->
+<!--                                                    <label class="form-check-label" for="Salmon_fish">{% trans 'Salmon fish' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Tilapia_fish" name="protein" value="Tilapia fish">-->
+<!--                                                    <label class="form-check-label" for="Tilapia_fish">{% trans 'Tilapia fish' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Cod_fish" name="protein"  value="Cod fish">-->
+<!--                                                    <label class="form-check-label" for="Cod_fish">{% trans 'Cod fish' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Filet_tuna_fish" name="protein" value="Filet tuna fish">-->
+<!--                                                  <label class="form-check-label" for="Filet_tuna_fish">{% trans 'Filet tuna fish' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Haddock_fish" name="protein" value="Haddock fish">-->
+<!--                                                    <label class="form-check-label" for="Haddock_fish">{% trans 'Haddock fish' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                       <div class="col-sm-3">-->
+<!--                                            <div class="form-check form-check-inline">-->
+<!--                                                <input class="form-check-input" type="checkbox" id="Canned_Diet_Tuna" name="protein" value="Canned Diet Tuna">-->
+<!--                                                <label class="form-check-label" for="Canned_Diet_Tuna">{% trans 'Canned Diet Tuna' %}</label>-->
+<!--                                            </div>-->
+<!--                                    </div>-->
+<!--                                  <div class="col-sm-3">-->
+<!--                                        <div class="form-check form-check-inline">-->
+<!--                                            <input class="form-check-input" type="checkbox" id="Shrimp" name="protein" value="Shrimp">-->
+<!--                                            <label class="form-check-label" for="Shrimp">{% trans 'Shrimp' %}</label>-->
+<!--                                        </div>-->
+<!--                                </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Squid" name="protein" value="Squid">-->
+<!--                                                  <label class="form-check-label" for="Squid">{% trans 'Squid' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Eggs" name="protein" value="Eggs">-->
+<!--                                                    <label class="form-check-label" for="Eggs">{% trans 'Eggs' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+
+<!--                                </fieldset>-->
+<!--                                <fieldset class="form-group">-->
+<!--                                    <div class="row">-->
+<!--                                      <legend class="col-form-label col-sm-12 pt-0 legend-class">{% trans 'Dairy options:' %}</legend>-->
+<!--                                    </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Skimmed_milk" name="dairy" value="Skimmed milk">-->
+<!--                                                  <label class="form-check-label" for="Skimmed_milk">{% trans 'Skimmed milk' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="unsweetened_Almond_milk" name="dairy" value="unsweetened Almond milk">-->
+<!--                                                    <label class="form-check-label" for="unsweetened_Almond_milk">{% trans 'unsweetened Almond milk' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Unsweetened_coconut_milk" name="dairy" value="Unsweetened coconut milk">-->
+<!--                                                    <label class="form-check-label" for="Unsweetened_coconut_milk">{% trans 'Unsweetened coconut milk' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Greek_yoghurt" name="dairy" value="Greek yoghurt">-->
+<!--                                                    <label class="form-check-label" for="Greek_yoghurt">{% trans 'Greek yoghurt' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Low_fat_yoghurt" name="dairy" value="Low fat yoghurt">-->
+<!--                                                  <label class="form-check-label" for="Low_fat_yoghurt">{% trans 'Low fat yoghurt' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Low_fat_Cottage_cheese" name="dairy" value="Low fat Cottage cheese">-->
+<!--                                                    <label class="form-check-label" for="Low_fat_Cottage_cheese">{% trans 'Low fat Cottage cheese' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+
+<!--                                </fieldset>-->
+<!--                                <fieldset class="form-group">-->
+<!--                                      <div class="row">-->
+<!--                                      <legend class="col-form-label col-sm-12 pt-0 legend-class">{% trans 'vegetables options:' %}</legend>-->
+<!--                                    </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Watercress" name="vegetables" value="Watercress">-->
+<!--                                                  <label class="form-check-label" for="Watercress">{% trans 'Watercress' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Lettuce" name="vegetables" value="Lettuce">-->
+<!--                                                    <label class="form-check-label" for="Lettuce">{% trans 'Lettuce' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Alfalfa_Sprouts" name="vegetables" value="Alfalfa Sprouts">-->
+<!--                                                    <label class="form-check-label" for="Alfalfa_Sprouts">{% trans 'Alfalfa Sprouts' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Cabbage" name="vegetables" value="Cabbage">-->
+<!--                                                    <label class="form-check-label" for="Cabbage">{% trans 'Cabbage' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="parsley" value="parsley">-->
+<!--                                                  <label class="form-check-label" for="parsley">{% trans 'parsley' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="dill" name="vegetables" value="dill">-->
+<!--                                                    <label class="form-check-label" for="dill">{% trans 'dill' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="coriander" name="vegetables" value="coriander">-->
+<!--                                                    <label class="form-check-label" for="coriander">{% trans 'coriander' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Cucumber" name="vegetables" value="Cucumber">-->
+<!--                                                    <label class="form-check-label" for="Cucumber">{% trans 'Cucumber' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Cauliflower" name="vegetables" value="Cauliflower">-->
+<!--                                                  <label class="form-check-label" for="Cauliflower">{% trans 'Cauliflower' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Celery" name="vegetables" value="Celery">-->
+<!--                                                    <label class="form-check-label" for="Celery">{% trans 'Celery' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Radishes" name="vegetables" value="Radishes">-->
+<!--                                                    <label class="form-check-label" for="Radishes">{% trans 'Radishes' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Mushrooms" name="vegetables" value="Mushrooms">-->
+<!--                                                    <label class="form-check-label" for="Mushrooms">{% trans 'Mushrooms' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Eggplant" name="vegetables" value="Eggplant">-->
+<!--                                                  <label class="form-check-label" for="Eggplant">{% trans 'Eggplant' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Asparagus" name="vegetables" value="Asparagus">-->
+<!--                                                    <label class="form-check-label" for="Asparagus">{% trans 'Asparagus' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Spinach" name="vegetables" value="Spinach">-->
+<!--                                                    <label class="form-check-label" for="Spinach">{% trans 'Spinach' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Tomato" name="vegetables" value="Tomato">-->
+<!--                                                    <label class="form-check-label" for="Tomato">{% trans 'Tomato' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                     <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Onions" name="vegetables" value="Onions">-->
+<!--                                                  <label class="form-check-label" for="Onions">{% trans 'Onions' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Broccoli" name="vegetables" value="Broccoli">-->
+<!--                                                    <label class="form-check-label" for="Broccoli">{% trans 'Broccoli' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Zucchini" name="vegetables" value="Zucchini">-->
+<!--                                                    <label class="form-check-label" for="Zucchini">{% trans 'Zucchini' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Chickpea" name="vegetables" value="Chickpea">-->
+<!--                                                    <label class="form-check-label" for="Chickpea">{% trans 'Chickpea' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                    <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Green_pepper" name="vegetables" value="Green pepper">-->
+<!--                                                  <label class="form-check-label" for="Green_pepper">{% trans 'Green pepper' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Red_pepper" name="vegetables" value="Red pepper">-->
+<!--                                                    <label class="form-check-label" for="Red_pepper">{% trans 'Red pepper' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Yellow_pepper" name="vegetables" value="Yellow pepper">-->
+<!--                                                    <label class="form-check-label" for="Yellow_pepper">{% trans 'Yellow pepper' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Kale" name="vegetables" value="Kale">-->
+<!--                                                    <label class="form-check-label" for="Kale">{% trans 'Kale' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                    <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Brown_lentils" name="vegetables" value="Brown lentils">-->
+<!--                                                  <label class="form-check-label" for="Brown_lentils">{% trans 'Brown lentils' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Green_beans" name="vegetables" value="Green beans">-->
+<!--                                                    <label class="form-check-label" for="Green_beans">{% trans 'Green beans' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Kidney_beans" name="vegetables" value="Kidney beans">-->
+<!--                                                    <label class="form-check-label" for="Kidney_beans">{% trans 'Kidney beans' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Black_eyed_beans" name="vegetables" value="Black eyed beans">-->
+<!--                                                    <label class="form-check-label" for="Black_eyed_beans">{% trans 'Black eyed beans' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                    <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Sweet_corn" name="vegetables" value="Sweet corn">-->
+<!--                                                  <label class="form-check-label" for="Sweet_corn">{% trans 'Sweet corn' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Fava_beans" name="vegetables" value="Fava beans">-->
+<!--                                                    <label class="form-check-label" for="Fava_beans">{% trans 'Fava beans' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Artichoke" name="vegetables" value="Artichoke">-->
+<!--                                                    <label class="form-check-label" for="Artichoke">{% trans 'Artichoke' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                </fieldset>-->
+<!--                                <fieldset class="form-group">-->
+<!--                                    <div class="row">-->
+<!--                                      <legend class="col-form-label col-sm-12 pt-0 legend-class">{% trans 'Fruits options:' %}</legend>-->
+<!--                                    </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Watermelons" name="fruits" value="Watermelons">-->
+<!--                                                  <label class="form-check-label" for="Watermelons">{% trans 'Watermelons' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Cantaloupes" name="fruits" value="Cantaloupes">-->
+<!--                                                    <label class="form-check-label" for="Cantaloupes">{% trans 'Cantaloupes' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Strawberries" name="fruits" value="Strawberries">-->
+<!--                                                    <label class="form-check-label" for="Strawberries">{% trans 'Strawberries' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="raspberries" name="fruits" value="raspberries">-->
+<!--                                                    <label class="form-check-label" for="raspberries">{% trans 'raspberries' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="blackberries" name="fruits" value="blackberries">-->
+<!--                                                  <label class="form-check-label" for="blackberries">{% trans 'blackberries' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="blueberries" name="fruits" value="blueberries">-->
+<!--                                                    <label class="form-check-label" for="blueberries">{% trans 'blueberries' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="peaches" name="fruits" value="peaches">-->
+<!--                                                    <label class="form-check-label" for="peaches">{% trans 'peaches' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="pineapple" name="fruits" value="pineapple">-->
+<!--                                                    <label class="form-check-label" for="pineapple">{% trans 'pineapple' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row" >-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="Plum" name="fruits" value="Plum">-->
+<!--                                                  <label class="form-check-label" for="Plum">{% trans 'Plum' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="kiwi" name="fruits" value="kiwi">-->
+<!--                                                    <label class="form-check-label" for="kiwi">{% trans 'kiwi' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="cherries" name="fruits" value="cherries">-->
+<!--                                                    <label class="form-check-label" for="cherries">{% trans 'cherries' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                               <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="checkbox" id="Lemon" name="fruits" value="Lemon">-->
+<!--                                                    <label class="form-check-label" for="Lemon">{% trans 'Lemon' %}</label>-->
+<!--                                               </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-sm-3">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                  <input class="form-check-input" type="checkbox" id="banana" name="fruits" value="banana">-->
+<!--                                                  <label class="form-check-label" for="banana">{% trans 'banana' %}</label>-->
+<!--                                                </div>-->
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                </fieldset>-->
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'A clear photos of the body from different positions:  front,  side,and back in a suitable lighting and from an appropriate distance' %}</legend>
+                                    </div>
+                                      <div class="row">
+                                          <div class="col-sm-4">
+                                               <div class="form-group">
+                                                <input type="file" name="front-side" class="form-control-file">
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                               <div class="form-group">
+                                                <input type="file" name="side" class="form-control-file">
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-4">
+                                               <div class="form-group">
+                                                <input type="file" name="back-side" class="form-control-file">
+                                              </div>
+                                          </div>
+                                      </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'A clear photo of the body composition analysis (inbody)' %}</legend>
+                                    </div>
+                                      <div class="row">
+                                          <div class="col-sm-12">
+                                               <div class="form-group">
+                                                <input type="file" name="in-body" class="form-control-file">
+                                              </div>
+                                          </div>
+                                      </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-12 pt-0">{% trans 'A clear screenshot of the payment receipt or the money transfer message' %}</legend>
+                                    </div>
+                                      <div class="row">
+                                          <div class="col-sm-12">
+                                               <div class="form-group">
+                                                <input type="file" name="payment" class="form-control-file">
+                                              </div>
+                                          </div>
+                                      </div>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                    <input type="text" class="form-control"  name="food_name" aria-describedby="emailHelp" placeholder="Enter Full Name">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button type="submit" id="sub-food-name" class="btn btn-primary col-sm-12">{% trans 'Send' %}</button>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

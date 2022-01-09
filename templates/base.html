@@ -1,0 +1,218 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gym Template">
+    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hawary Trainer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/barfiller.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="fa fa-close"></i>
+        </div>
+        <nav class="canvas-menu mobile-menu">
+            <ul>
+                <li><a href="{% url 'home'  %}">{% trans 'Home' %}</a></li>
+                <li><a href="{% url 'about-us'  %}">{% trans 'About Us' %}</a></li>
+                <li><a href="{% url 'transformation'  %}">{% trans 'Transformation' %}</a></li>
+                <li><a href="{% url 'packages'  %}">{% trans 'Packages' %}</a></li>
+                <li><a href="{% url 'contact'  %}">{% trans 'Contact' %}</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="canvas-social">
+              <div>
+                  <a href="{% url 'set_language' %}" class="frst-anc" >
+                                        <span class="flex-en">
+                                            <img  width="22px" height="22px" src="{% static 'img/american-2.png' %}" alt="">
+                                        </span>
+                                        English
+                                      </a>
+                  <a  href="{% url 'set_language' %}" class="scnd-anc">
+                                        <span class="flex-en">
+                                            <img width="22px" height="22px" src="{% static 'img/egypt.png' %}" alt="">
+                                        </span>
+                                           عربي
+                                      </a>
+            </div>
+        </div>
+    </div>
+    <!-- Offcanvas Menu Section End -->
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="{% url 'home'  %}">
+                            <img src="{% static 'img/logo.png' %}"  alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                                  <nav class="nav-menu">
+                                        <ul>
+
+                                            <li {% if request.get_full_path == "/" %}class="active"{% endif %}><a href="{% url 'home'  %}">{% trans 'Home' %}</a></li>
+                                            <li {% if request.get_full_path == "/about-us/" %}class="active"{% endif %}><a href="{% url 'about-us'  %}">{% trans 'About Us' %}</a></li>
+                                            <li {% if request.get_full_path == "/transformation/" %}class="active"{% endif %} ><a href="{% url 'transformation'  %}">{% trans 'Transformation' %}</a></li>
+                                            <li {% if request.get_full_path == "/packages/" %}class="active"{% endif %} ><a href="{% url 'packages'  %}">{% trans 'Packages' %}</a></li>
+                                            <li {% if request.get_full_path == "/contact/" %}class="active"{% endif %} ><a href="{% url 'contact'  %}">{% trans 'Contact' %}</a></li>
+                                        </ul>
+                                  </nav>
+                         </div>
+                <div class="col-lg-3">
+                         <div class="top-option">
+                              <div class="to-social">
+                                  <div>
+                                      <a href="{% url 'set_language' %}" class="frst-anc" >
+                                        <span class="flex-en">
+                                            <img  width="22px" height="22px" src="{% static 'img/american-2.png' %}" alt="">
+                                        </span>
+                                        English
+                                      </a>
+                                      <a href="{% url 'set_language' %}" class="scnd-anc">
+                                        <span class="flex-en">
+                                            <img width="22px" height="22px" src="{% static 'img/egypt.png' %}" alt="">
+                                        </span>
+                                           عربي
+                                      </a>
+                                    </div>
+                              </div>
+                         </div>
+                </div>
+
+
+                <div class="canvas-open">
+                   <i class="fa fa-bars"></i>
+                  </div>
+            </div>
+
+        </div>
+    </header>
+    <!-- Header End -->
+
+  {% block content %} {% endblock %}
+
+
+<!--    &lt;!&ndash; Get In Touch Section Begin &ndash;&gt;-->
+<!--    <div class="gettouch-section">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="gt-text">-->
+<!--                        <i class="fa fa-map-marker"></i>-->
+<!--                        <p>{{ setting.address }}</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="gt-text">-->
+<!--                        <i class="fa fa-mobile"></i>-->
+<!--                        <ul>-->
+<!--                            <li>{{ setting.main_mobile_number }}</li>-->
+<!--                            <li>{{ setting.secondary_mobile_number }}</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                    <div class="gt-text email">-->
+<!--                        <i class="fa fa-envelope"></i>-->
+<!--                        <p>{{ setting.email }}</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Get In Touch Section End &ndash;&gt;-->
+
+    <!-- Footer Section Begin -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact-widget">
+                        <div class="cw-text email to-social">
+                            <a href="#"><img src="{% static 'img/social/whats.png' %}" style="width: 30px; height: 30px;"></a>
+                        </div>
+                        <div class="cw-text email to-social">
+                            <a href="#"><img src="{% static 'img/social/gmail.png' %}" style="width: 30px; height: 30px;"></a>
+                        </div>
+                        <div class="cw-text email to-social">
+                            <a href="#"><img src="{% static 'img/social/instagram.png' %}" style="width: 30px; height: 30px;"></a>
+                        </div>
+                        <div class="cw-text email to-social">
+                            <a href="#"><img src="{% static 'img/social/tik3.png' %}" style="width: 30px; height: 30px;"></a>
+                        </div>
+                        <div class="cw-text email to-social">
+                            <a href="#"><img src="{% static 'img/social/youtube.png' %}" style="width: 30px; height: 30px;"></a>
+                        </div>
+                        <div class="cw-text to-social">
+                            <a href="#"><img src="{% static 'img/social/twitter.png' %}" style="width: 30px; height: 30px;"></a>
+                        </div>
+                        <div class="cw-text to-social">
+                            <a href="#"><img src="{% static 'img/social/face.png' %}" style="width: 30px; height: 30px;"></a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="copyright-text">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  {% trans 'Copyright' %} &copy;<script>document.write(new Date().getFullYear());</script> {% trans 'All rights reserved' %}
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.barfiller.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+
+</body>
+
+</html>

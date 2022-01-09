@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/trans_bread.jpeg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb-text">
+<!--                        <h2>Transformation</h2>-->
+                        <div class="bt-option">
+<!--                            <a href="{% url 'home'  %}">Home</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="aboutus-section">
+                            <span class="long-span">{% trans 'Those who have committed to the online coaching process and believed in themselves had achieved their best transformations. It’s a matter of commitment and discipline towards your goal.' %}</span>
+
+            {% for transform in transformations %}
+                <div class="container-fluid trans-section">
+                <div class="row trans">
+                    <div class="col-lg-6 p-0">
+                        <div class="about-video set-bg" data-setbg="{{ transform.img.url }}">
+                        </div>
+                    </div>
+<!--                    <div class="col-lg-6 p-0">-->
+<!--                     {% get_current_language as LANGUAGE_CODE %}-->
+<!--                    {% if  LANGUAGE_CODE == 'ar'%}-->
+<!--                                                <div class="about-text">-->
+<!--                            <div class="section-title">-->
+<!--                                <span>{{ transform.name_ar }}</span>-->
+<!--                                <h2>{{ transform.title_ar }}</h2>-->
+<!--                            </div>-->
+<!--                            <div class="at-desc">-->
+<!--                                <p>{{ transform.description_ar }}</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        {% else %}-->
+<!--                        <div class="about-text">-->
+<!--                            <div class="section-title">-->
+<!--                                <span>{{ transform.name }}</span>-->
+<!--                                <h2>{{ transform.title }}</h2>-->
+<!--                            </div>-->
+<!--                            <div class="at-desc">-->
+<!--                                <p>{{ transform.description }}</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        {% endif %}-->
+<!--                    </div>-->
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </section>
+        <!-- About US Section End -->
+{% if transformations.has_other_pages %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% if transformations.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ transformations.previous_page_number }}">Previous</a></li>
+      {% endif %}
+          {% for i in transformations.paginator.page_range %}
+            {% if transformations.number == i %}
+                <li class="page-item"><a class="page-link active" >{{i}}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+        {% endfor %}
+      {% if transformations.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{transformations.next_page_number}}">Next</a></li>
+      {% endif %}
+
+  </ul>
+</nav>
+
+
+{% endif %}
+{% endblock %}
